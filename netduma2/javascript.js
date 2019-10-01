@@ -9,24 +9,20 @@
 
 
 
-const name = document.getElementById("firstname");
-const lastName = document.getElementById("lastname");
-const telephone = document.getElementById("telephone");
-const email = document.getElementById("email");
-const address = document.getElementById("address");
-const street = document.getElementById("street");
-const town = document.getElementById("town");
-const country = document.getElementById("country");
-
-const create = document.getElementById("create");
-const Delete = document.getElementById("delete");
-const search = document.getElementById("search");
-
-
-
 const output = document.getElementById("output");
 
 document.getElementById("create").addEventListener("click", function(){
+    const name = document.getElementById("firstName");
+    const lastName = document.getElementById("lastName");
+    const telephone = document.getElementById("Telephone");
+    const email = document.getElementById("Email");
+    const address = document.getElementById("Address");
+    const street = document.getElementById("Street");
+    const town = document.getElementById("Town");
+    const country = document.getElementById("Country");
+
+    
+
     const inputName = name.value;
     const inputLastName = lastName.value;
     const inputEmail = email.value;
@@ -46,10 +42,12 @@ document.getElementById("create").addEventListener("click", function(){
         town : inputTown,
         country : inputCountry
     }
-    var local;
+   // var local;
     
     localStorage.setItem('users', JSON.stringify(users))
-    local = JSON.parse(localStorage.getItem('users'))
+    //local = JSON.parse(localStorage.getItem('users'))
+
+   
   });
 
   document.getElementById("clear").addEventListener("click", function(){
@@ -62,13 +60,44 @@ document.getElementById("create").addEventListener("click", function(){
     for(obj in json) {
         console.log(json[obj].name);
     }
-    
+
     let search = document.getElementById("searchIt").value;
          localStorage.getItem(search);
       
   });
+   
+  var local;
+  local = JSON.parse(localStorage.getItem('users'))
+  document.getElementById("name").textContent = local.name;
+  document.getElementById("lastname").textContent = local.lastname;
+  document.getElementById("email").textContent = local.email;
+  document.getElementById("telephone").textContent = local.telephone;
+  document.getElementById("address").textContent = local.address;
+  document.getElementById("street").textContent = local.street;
+  document.getElementById("town").textContent = local.town;
+  document.getElementById("country").textContent = local.country;
+  console.log(local);
 
- document.getElementById('output').textContent = (localStorage.getItem('users'))
+  
+  
+  document.getElementById('output').textContent = (localStorage.getItem('users'))
+  
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
 
 
 
