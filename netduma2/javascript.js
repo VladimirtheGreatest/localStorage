@@ -77,6 +77,15 @@ document.getElementsByTagName('h1')[7].innerHTML = local.name;
       
   });
 
+  document.getElementById('name').textContent = JSON.parse(localStorage.getItem('users')).name
+  document.getElementById('lastname').textContent = JSON.parse(localStorage.getItem('users')).lastname
+  document.getElementById('telephone').textContent = JSON.parse(localStorage.getItem('users')).telephone
+  document.getElementById('address').textContent = JSON.parse(localStorage.getItem('users')).address
+  document.getElementById('street').textContent = JSON.parse(localStorage.getItem('users')).street
+  document.getElementById('email').textContent = JSON.parse(localStorage.getItem('users')).email
+  document.getElementById('town').textContent = JSON.parse(localStorage.getItem('users')).town
+  document.getElementById('country').textContent = JSON.parse(localStorage.getItem('users')).country
+
 
 
 
