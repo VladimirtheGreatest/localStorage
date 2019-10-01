@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+</head>
+<body>
+
+        <form id='address book'>
+                <table>
+                    <tr>
+                        <td><label>First Name</label></td>
+                        <td colspan="2"><input type="text" id="firstname" name="firstname"  style="width:300px;"/></td>
+                    </tr>
+                    <tr>
+                        <td><label>Last Name</label></td>
+                        <td colspan="2"><input type="text" id="lastname" name="lastname" style="width:300px;"/></td>
+                    </tr>
+                    <tr>
+                        <td><label>Email</label></td>
+                        <td><input type="text" id="email" name="email"  style="width:300px;"/></td>
+                    </tr>
+                    <tr>
+                        <td><label>Telephone</label></td>
+                        <td><input type="text" id="telephone" name="telephone"  style="width:300px;"/></td>
+                    </tr>
+                    <tr>
+                        <td><label>Address</label>
+                            <td><input type="text" id="address" name="address"  style="width:300px;"/></td>
+                            <td><label>Street</label></td>
+                            <td><input type="text" id="street" name="street"  style="width:300px;"/></td>
+                            <td><label ></label>Town</label></td>
+                            <td><input type="text" id="town" name="town"  style="width:300px;"/></td>
+                            <td><label>Country</label></td>
+                            <td><input type="text" id="country" name="country"  style="width:300px;"/></td>
+                        </td>
+                       <button id="create">Add user</button>
+                    </tr>
+                </table>
+                <form id='delete'>
+                          <input type="text" id="delete">
+                          <button id="clear">Delete User</button>
+                        </form> 
+                        <form id='search'>
+                                <input type="text" id="searchIt">
+                                <button id="search">Search User</button>
+                              </form> 
+            </form> 
+
+            <div>
+                <div id="output">
+                        <h1 id="name"></h1>
+                        <h1 id="lastname"></h1>
+                        <h1 id="email"></h1>
+                        <h1 id="telephone"></h1>
+                        <h1 id="address"></h1>
+                        <h1 id="street"></h1>
+                        <h1 id="town"></h1>
+                        <h1 id="country"></h1>
+                </div>
+            </div>
+    
+</body>
+    <script src="javascript.js"></script>
+</html>
