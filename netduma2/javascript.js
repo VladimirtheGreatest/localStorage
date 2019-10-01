@@ -1,86 +1,88 @@
-//console.log(localStorage);
-//localStorage.setItem("name", "Vladimir");     //add item
-//localStorage.removeItem("name");               //remove item
-//localStorage.setItem("Other name", "Putin");
-//console.log(localStorage.getItem("Other name"));
-//console.log(localStorage.key(0));
-//localStorage.removeItem("aaaaaaa");
-//localStorage.removeItem("asdfasf");
-
-
-
-const output = document.getElementById("output");
-
-document.getElementById("create").addEventListener("click", function(){
-    const name = document.getElementById("firstName");
-    const lastName = document.getElementById("lastName");
-    const telephone = document.getElementById("Telephone");
-    const email = document.getElementById("Email");
-    const address = document.getElementById("Address");
-    const street = document.getElementById("Street");
-    const town = document.getElementById("Town");
-    const country = document.getElementById("Country");
-
-    
-
-    const inputName = name.value;
-    const inputLastName = lastName.value;
-    const inputEmail = email.value;
-    const inputTelephone = telephone.value;
-    const inputAddress = address.value;
-    const inputStreet = street.value;
-    const inputTown = town.value;
-    const inputCountry = country.value;
-    
-    var users =  {
-        name : inputName,
-        email : inputEmail,
-        lastname : inputLastName,
-        telephone : inputTelephone,
-        address : inputAddress,
-        street : inputStreet,
-        town : inputTown,
-        country : inputCountry
-    }
-   // var local;
-    
-    localStorage.setItem('users', JSON.stringify(users))
-    //local = JSON.parse(localStorage.getItem('users'))
-
-   
-  });
-
-  document.getElementById("clear").addEventListener("click", function(){
-    let Delete = document.getElementById("delete");
-        localStorage.removeItem(Delete)
-  });
-
-  document.getElementById("search").addEventListener("click", function(){
-    var json = JSON.parse(localStorage);
-    for(obj in json) {
-        console.log(json[obj].name);
-    }
-
-    let search = document.getElementById("searchIt").value;
-         localStorage.getItem(search);
-      
-  });
-   
-  var local;
-  local = JSON.parse(localStorage.getItem('users'))
-  document.getElementById("name").textContent = local.name;
-  document.getElementById("lastname").textContent = local.lastname;
-  document.getElementById("email").textContent = local.email;
-  document.getElementById("telephone").textContent = local.telephone;
-  document.getElementById("address").textContent = local.address;
-  document.getElementById("street").textContent = local.street;
-  document.getElementById("town").textContent = local.town;
-  document.getElementById("country").textContent = local.country;
-  console.log(local);
-
+(function() {
+    var nameField = document.getElementById("name"),
+      lastnameField = document.getElementById("lastname");
+      emailField = document.getElementById("email");
+      telephoneField = document.getElementById("telephone");
+      addressField = document.getElementById("address");
+      streetField = document.getElementById("street");
+      countryField = document.getElementById("country");
+      townField = document.getElementById("town");
   
+    // On page load, get the current set or a blank array
+    var list = JSON.parse(localStorage.getItem("list") || "[]");
   
-  document.getElementById('output').textContent = (localStorage.getItem('users'))
+    // Show the entries
+    list.forEach(showItem);  //ShowItem is a function down below
+  
+    // "Add" button handler
+    document.getElementById("btn-add").addEventListener(
+      "click",
+      function() {
+        // Get the name and price
+        var item = {
+          name: nameField.value,
+          lastname: lastnameField.value,
+          email: emailField.value,
+          telephone: telephoneField.value,
+          address: addressField.value,
+          street : streetField.value,
+          country: countryField.value,
+          town: townField.value
+        };
+  
+        // Add to the list
+        list.push(item);
+  
+        // Display it
+        showItem(item);
+  
+        // Update local storage
+        localStorage.setItem("list", JSON.stringify(list));
+      },
+      false
+    );
+
+     // Delete method
+    document.getElementById("delete").addEventListener(
+        "click",
+        function() {
+          
+    // This function deletes items on our list
+	// In order to delete entire list item we have to use parent method > without parent method we would only delete our delete button
+	$(this).parent().fadeOut(1000, function(){
+		$(this).remove();
+	});
+
+	// This deletes list items in our local storage
+	//localStorage.removeItem("list", $('#users').html());
+
+	
+})
+  
+    // Function for showing an item
+    function showItem(item) {
+      var div = document.createElement('div');
+      div.innerHTML =
+        "Name: " + escapeHTML(item.name) +
+        ", Lastname: " + escapeHTML(item.lastname) +
+        ", Email: " + escapeHTML(item.email) +
+        ", Telephone: " + escapeHTML(item.telephone) +
+        ", Address: " + escapeHTML(item.address) +
+        ", Street: " + escapeHTML(item.street) +
+        ", Country: " + escapeHTML(item.country) +
+        ", Town: " + escapeHTML(item.town) 
+        var buttonDelete = document.createElement('button');
+        buttonDelete.setAttribute("id", "delete");
+        buttonDelete.innerHTML = 'Delete this user'
+      document.getElementById("list").appendChild(div);
+      document.getElementById("list").appendChild(buttonDelete);   //this will call method to delete the user
+    }
+  
+    // Function for escaping HTML in the string
+    function escapeHTML(str) {
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+    }
+  })();
   
 
 
