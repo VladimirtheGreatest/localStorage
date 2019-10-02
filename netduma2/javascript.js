@@ -1,89 +1,74 @@
-(function() {
-    var nameField = document.getElementById("name"),
-      lastnameField = document.getElementById("lastname");
-      emailField = document.getElementById("email");
-      telephoneField = document.getElementById("telephone");
-      addressField = document.getElementById("address");
-      streetField = document.getElementById("street");
-      countryField = document.getElementById("country");
-      townField = document.getElementById("town");
-  
-    // On page load, get the current set or a blank array
-    var list = JSON.parse(localStorage.getItem("list") || "[]");
-  
-    // Show the entries
-    list.forEach(showItem);  //ShowItem is a function down below
-  
-    // "Add" button handler
-    document.getElementById("btn-add").addEventListener(
-      "click",
-      function() {
-        // Get the name and price
-        var item = {
-          name: nameField.value,
-          lastname: lastnameField.value,
-          email: emailField.value,
-          telephone: telephoneField.value,
-          address: addressField.value,
-          street : streetField.value,
-          country: countryField.value,
-          town: townField.value
-        };
-  
-        // Add to the list
-        list.push(item);
-  
-        // Display it
-        showItem(item);
-  
-        // Update local storage
-        localStorage.setItem("list", JSON.stringify(list));
-      },
-      false
-    );
 
-     // Delete method
-    document.getElementById("delete").addEventListener(
-        "click",
-        function() {
-          
-    // This function deletes items on our list
+
+
+
+
+// This function adds items on our list
+function addListItem() {
+	var text=$('#name').val();  
+	var text1=$('#lastname').val();  
+	var text2=$('#email').val();  
+	var text3=$('#telephone').val();  
+	var text4=$('#address').val();  
+	var text5=$('#street').val();  
+	var text6=$('#country').val();  
+	var text7=$('#town').val();  
+
+
+	       let generateRandomString = () => Math.random().toString(36).substr(2, 5);
+		
+	$('#List').append(`<div id='${generateRandomString()}'>`+ text +'<button class="delete">Delete</button></div>');
+	$('#user').append('<li>'+ text );
+	$('#user').append('<li>'+ text1 );
+	$('#user').append('<li>'+ text2 );
+	$('#user').append('<li>'+ text3 );
+	$('#user').append('<li>'+ text4 );
+	$('#user').append('<li>'+ text5 );
+	$('#user').append('<li>'+ text6 );
+	$('#user').append('<li>'+ text7 );
+
+
+	// This adds list items to our local storage
+	localStorage.setItem("list", $('#List').html());
+
+	$('#newText').val(''); 
+	
+};
+
+// This function deletes items on our list
+function deleteListItem() {
 	// In order to delete entire list item we have to use parent method > without parent method we would only delete our delete button
 	$(this).parent().fadeOut(1000, function(){
 		$(this).remove();
 	});
 
 	// This deletes list items in our local storage
-	//localStorage.removeItem("list", $('#users').html());
+	localStorage.removeItem("list", $('#List').html());
+
+};
+
+
+
+
+$ (document).ready(function(){
+    if (localStorage.getItem("list") != null) {
+      $('#List').html(localStorage.getItem("list")); // This reads items in our local storage
+    }
+
+	$('#add').on('click', addListItem); // This is for button to add text
+
+	// This part enables us to add text on pressing enter key
+	$( "#newText" ).keypress(function( event ) {
+		if ( event.which == 13) {
+			addListItem();
+		}
+    });
+});
+
 
 	
-})
-  
-    // Function for showing an item
-    function showItem(item) {
-      var div = document.createElement('div');
-      div.innerHTML =
-        "Name: " + escapeHTML(item.name) +
-        ", Lastname: " + escapeHTML(item.lastname) +
-        ", Email: " + escapeHTML(item.email) +
-        ", Telephone: " + escapeHTML(item.telephone) +
-        ", Address: " + escapeHTML(item.address) +
-        ", Street: " + escapeHTML(item.street) +
-        ", Country: " + escapeHTML(item.country) +
-        ", Town: " + escapeHTML(item.town) 
-        var buttonDelete = document.createElement('button');
-        buttonDelete.setAttribute("id", "delete");
-        buttonDelete.innerHTML = 'Delete this user'
-      document.getElementById("list").appendChild(div);
-      document.getElementById("list").appendChild(buttonDelete);   //this will call method to delete the user
-    }
-  
-    // Function for escaping HTML in the string
-    function escapeHTML(str) {
-      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;");
-    }
-  })();
-  
+	$(document).on('click', '.delete', deleteListItem);
+
 
 
 
