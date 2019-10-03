@@ -10,14 +10,16 @@ function addListItem() {
 	var text7=$('#town').val();  
 
 
-	       let generateRandomString = () => Math.random().toString(36).substr(2, 5);
+		  // let generateRandomString = () => Math.random().toString(36).substr(2, 5);
+		  // let newId = generateRandomString()
 		
-	$('#List').append(`<ul id='${generateRandomString()}'>`+ text +
+	$('#List').append(`<ul id='${text}'>`+ text +
 	'<button class="delete">Delete</button>' + '<li>' + text1 + '</li>' + '<li>' + text2 + '</li>'
 	+ '<li>' + text3 + '</li>' + '<li>' + text4 + '</li>' + '<li>' + text5 + '</li>' + '<li>' + text6 + '</li>' + '<li>' + text7 + '</li>' );
 
 	// This adds list items to our local storage
 	localStorage.setItem("list", $('#List').html());
+
 
 	$('#newText').val(''); 
 	
@@ -32,8 +34,15 @@ function deleteListItem() {
 
 	// This deletes list items in our local storage
 	localStorage.removeItem("list", $('#List').html());
-
 };
+
+
+// This function searches items on our list
+function searchListItem() {
+	var search =$('#search').val();  
+	var x = document.getElementById(search);
+	$('#search-list').append(x);
+}
 
 
 
@@ -44,6 +53,7 @@ $ (document).ready(function(){
     }
 
 	$('#add').on('click', addListItem); // This is for button to add text
+	$('#search-btn').on('click', searchListItem); // This is for button to add text
 
 	// This part enables us to add text on pressing enter key
 	$( "#newText" ).keypress(function( event ) {
