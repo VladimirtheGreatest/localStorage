@@ -7,4 +7,4 @@ The localStorage object stores data with no expiration date. The data will not b
 
 The localStorage property is read-only.
 
-		<img src="https://i.ytimg.com/vi/k8yJCeuP6I8/maxresdefault.jpg" alt="">
+		<img src="https://i.ytimg.com/vi/k8yJCeuP6I8/maxresdefault.jpg" alt=""/>
