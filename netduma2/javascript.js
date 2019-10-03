@@ -1,8 +1,3 @@
-
-
-
-
-
 // This function adds items on our list
 function addListItem() {
 	var text=$('#name').val();  
@@ -17,16 +12,9 @@ function addListItem() {
 
 	       let generateRandomString = () => Math.random().toString(36).substr(2, 5);
 		
-	$('#List').append(`<div id='${generateRandomString()}'>`+ text +'<button class="delete">Delete</button></div>');
-	$('#user').append('<li>'+ text );
-	$('#user').append('<li>'+ text1 );
-	$('#user').append('<li>'+ text2 );
-	$('#user').append('<li>'+ text3 );
-	$('#user').append('<li>'+ text4 );
-	$('#user').append('<li>'+ text5 );
-	$('#user').append('<li>'+ text6 );
-	$('#user').append('<li>'+ text7 );
-
+	$('#List').append(`<ul id='${generateRandomString()}'>`+ text +
+	'<button class="delete">Delete</button>' + '<li>' + text1 + '</li>' + '<li>' + text2 + '</li>'
+	+ '<li>' + text3 + '</li>' + '<li>' + text4 + '</li>' + '<li>' + text5 + '</li>' + '<li>' + text6 + '</li>' + '<li>' + text7 + '</li>' );
 
 	// This adds list items to our local storage
 	localStorage.setItem("list", $('#List').html());
@@ -68,35 +56,3 @@ $ (document).ready(function(){
 
 	
 	$(document).on('click', '.delete', deleteListItem);
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
